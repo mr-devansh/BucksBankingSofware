@@ -130,7 +130,7 @@ public class Main {
 		int balance = Integer.parseInt(scanner.nextLine());
 		System.out.print("Email: ");
 		String email = scanner.nextLine();
-		Account account = new Account(0, name, true, bene, new Address(city, country), balance, email);
+		Account account = new Account(name, true, bene, new Address(city, country), balance, email);
 		long ans = bankService.createNewAccount(account);
 	}
 

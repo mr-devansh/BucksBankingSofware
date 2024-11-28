@@ -2,9 +2,9 @@ package com.bucks.banking.model;
 
 import jakarta.persistence.*;
 @Entity
+@Table(name="benefeciary_tb")
+
 public class Beneficiary {
-    // Attributes
-    private long accountNumber;
     @Id
     private long ssn;
     private String name;

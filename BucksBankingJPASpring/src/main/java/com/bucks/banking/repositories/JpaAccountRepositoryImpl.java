@@ -25,6 +25,8 @@ public class JpaAccountRepositoryImpl implements AccountRepository{
 	@Override
 	public long save(Account account) {
 		manager.getTransaction().begin();
+		manager.persist(account.getAddress());
+		account.getBeneficiaries().forEach(e->manager.persist(e));
 		manager.persist(account);//inserts because object of type java employee
 		manager.getTransaction().commit();
 		return 1;

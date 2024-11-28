@@ -1,11 +1,11 @@
 package com.bucks.banking.model;
 
 import jakarta.persistence.*;
-
+@Entity
 public class Address {
     // Attributes
-	
-    private long accountNumber;
+	@Id
+    private int id;
     private String city;
     private String country;
 

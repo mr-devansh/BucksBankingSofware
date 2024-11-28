@@ -4,20 +4,25 @@ import java.util.Set;
 
 import jakarta.persistence.*;
 @Entity
+@Table(name="account_tb")
 public class Account {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long accountNumber;
     private String name;
     private boolean isActive;
+    
+    @OneToMany
     private Set<Beneficiary> beneficiaries;
+    
+    @OneToOne
     private Address address;
     private int balance;
     private String emailAddress;
 
     // Constructor
-    public Account(long accountNumber, String name, boolean isActive, Set<Beneficiary> beneficiaries, 
+    public Account(String name, boolean isActive, Set<Beneficiary> beneficiaries, 
                    Address address, int balance, String emailAddress) {
-        this.accountNumber = accountNumber;
         this.name = name;
         this.isActive = isActive;
         this.beneficiaries = beneficiaries;
