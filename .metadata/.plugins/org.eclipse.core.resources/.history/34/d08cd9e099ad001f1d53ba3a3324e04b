@@ -1,0 +1,74 @@
+package com.bucks.banking.services;
+
+import java.sql.Connection;
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.bucks.banking.model.Account;
+import com.bucks.banking.repositories.AccountRepository;
+import com.bucks.banking.repositories.RewardRepository;
+import com.bucks.banking.repositories.TransactionRepository;
+
+public class BankServiceJpaImpl implements BankService{
+	ApplicationContext context = new ClassPathXmlApplicationContext("spring-beans.xml");
+
+	AccountRepository accountRepo 	=	context.getBean(AccountRepository.class);
+	TransactionRepository transactionRepo = 	context.getBean(TransactionRepository.class);
+	RewardRepository rewardRepo 		= 	context.getBean(RewardRepository.class);
+	EmailService emailService 	= 	context.getBean(EmailService.class);
+	 bankService 	= 	context.getBean(BankService.class);
+	
+	@Override
+	public Long transfer(Long fromAccount, Long toAccount, int amount) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+	@Override
+	public Long debit(int amount, Long accountNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Long credit(int amount, Long accountNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long createNewAccount(Account account) {
+		// TODO Auto-generated method stub
+		
+		return 0;
+	}
+
+	@Override
+	public void deactivateAccount(Long accountNumber) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void activateAccount(Long accountNumber) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Account> getAllAccounts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateBeneficiaries(String[] split, long account) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+}

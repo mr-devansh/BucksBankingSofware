@@ -33,17 +33,16 @@ public class JpaAccountRepositoryImpl implements AccountRepository{
 	}
 
 	@Override
-	public long save(Account account) {
+	public void save(Account account) {
 		manager.getTransaction().begin();
 		manager.persist(account.getAddress());
 		account.getBeneficiaries().forEach(e->manager.persist(e));
 		manager.persist(account);//inserts because object of type java employee
 		manager.getTransaction().commit();
-		return 1;
 	}
 
 	@Override
-	public void update(Account account, Connection connection) {
+	public void update(Account account) {
 		// TODO Auto-generated method stub
 		Account found = manager.find(Account.class, account.getAccountNumber());
 		if(found!=null) {

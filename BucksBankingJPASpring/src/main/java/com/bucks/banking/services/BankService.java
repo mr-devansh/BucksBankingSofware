@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface BankService {
 
-    Long transfer(Long fromAccount, Long toAccount, int amount);
+    void transfer(Long fromAccount, Long toAccount, int amount);
 
-    Long debit(int amount, Long accountNumber, Connection connection);
+    void debit(int amount, Long accountNumber);
 
-    Long credit(int amount, Long accountNumber, Connection connection);
+    void credit(int amount, Long accountNumber);
 
-    long createNewAccount(Account account);
+    void createNewAccount(Account account);
 
     void deactivateAccount(Long accountNumber);
 
@@ -21,5 +21,5 @@ public interface BankService {
 
     List<Account> getAllAccounts();
 
-	int updateBeneficiaries(String[] split, long account);
+	void updateBeneficiaries(String[] split, long account);
 }
