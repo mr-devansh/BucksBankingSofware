@@ -1,0 +1,5 @@
+package com.bucks.banking.repositories;
+
+public class JpaRewardRepositoryImpl {
+
+}

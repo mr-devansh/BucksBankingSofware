@@ -1,0 +1,39 @@
+package com.bucks.banking.repositories;
+
+import java.util.List;
+
+import com.bucks.banking.model.Reward;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+
+public class JpaRewardRepositoryImpl implements RewardRepository{
+	EntityManagerFactory factory;
+	EntityManager manager;
+	
+	public JpaRewardRepositoryImpl(EntityManagerFactory factory, EntityManager manager) {
+		super();
+		this.factory = factory;
+		this.manager = manager;
+	}
+
+	@Override
+	public void addReward(Reward reward) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getTotalRewardAmount(Long accountNumber) {
+		// TODO Auto-generated method stub
+		
+		return 0;
+	}
+
+	@Override
+	public List<Reward> getAllRewardsForAccount(Long accountNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -46,7 +46,7 @@ public class BankServiceImpl implements BankService {
         	Set<Beneficiary> setBene = new HashSet<Beneficiary>();
             // Update the balance
         	for (int i = 0; i < names.length; i++) {
-				setBene.add(new Beneficiary(0L, names[i]));
+				setBene.add(new Beneficiary(names[i]));
 			}
             account.setBeneficiaries(setBene);
             accountRepo.update(account, connection);  // Pass connection to use it in update method
@@ -131,12 +131,12 @@ public class BankServiceImpl implements BankService {
             accountRepo.update(account, connection);  // Pass connection to use it in update method
 
             // Create a credit transaction
-            TransactionDetail transaction = new TransactionDetail(0L, accountNumber, new Date(), amount, TransactionType.CREDIT);
+            TransactionDetail transaction = new TransactionDetail(accountNumber, new Date(), amount, TransactionType.CREDIT);
             emailService.sendMail(account.getEmailAddress(), "bank@bucks.com"
             		, "Hi "+account.getName()+
             		",your account with Account number "+
             				account.getAccountNumber()+" is credited with "+amount+" rupees");
-            return transactionRepo.addTransaction(transaction, connection);  // Pass connection to use it in addTransaction
+            return transactionRepo.addTransaction(transaction);  // Pass connection to use it in addTransaction
         }
         return null;  // Return null if credit fails (account not found)
     }
@@ -157,12 +157,12 @@ public class BankServiceImpl implements BankService {
             accountRepo.update(account, connection);  // Pass connection to use it in update method
 
             // Create a debit transaction
-            TransactionDetail transaction = new TransactionDetail(0L, accountNumber, new Date(), amount, TransactionType.DEBIT);
+            TransactionDetail transaction = new TransactionDetail(accountNumber, new Date(), amount, TransactionType.DEBIT);
             emailService.sendMail(account.getEmailAddress(), "bank@bucks.com"
             		, "Hi "+account.getName()+
             		",your account with Account number "+
             				account.getAccountNumber()+" is debited with "+amount+" rupees");
-            return transactionRepo.addTransaction(transaction, connection);  // Pass connection to use it in addTransaction
+            return transactionRepo.addTransaction(transaction);  // Pass connection to use it in addTransaction
         }
         return null;  // Return null if debit fails (insufficient balance or account not found)
     }

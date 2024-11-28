@@ -3,16 +3,17 @@ package com.bucks.banking.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="reward_tb")
 public class Reward {
     // Attributes
 	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long rewardConfirmationNumber;
     private int rewardAmount;
     private long accountNumber;
 
     // Constructor
-    public Reward(long rewardConfirmationNumber, int rewardAmount, long accountNumber) {
-        this.rewardConfirmationNumber = rewardConfirmationNumber;
+    public Reward(int rewardAmount, long accountNumber) {
         this.rewardAmount = rewardAmount;
         this.accountNumber = accountNumber;
     }

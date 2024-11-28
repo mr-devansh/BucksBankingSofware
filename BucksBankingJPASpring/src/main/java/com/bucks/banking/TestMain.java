@@ -16,6 +16,7 @@ public class TestMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 
 		ApplicationContext context = new AnnotationConfigApplicationContext(BankAppConfiguration.class);
 		BankService bankService = context.getBean(BankService.class);

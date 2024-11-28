@@ -1,0 +1,22 @@
+package com.bucks.banking.repositories;
+
+import java.sql.Connection;
+import java.util.List;
+
+import com.bucks.banking.model.TransactionDetail;
+
+public class JpaTransactionRepositoryImpl implements TransactionRepository {
+
+	@Override
+	public Long addTransaction(TransactionDetail transactionDetail, Connection connection) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TransactionDetail> getAllTransactionDetailsByAccountNumber(Long accountNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

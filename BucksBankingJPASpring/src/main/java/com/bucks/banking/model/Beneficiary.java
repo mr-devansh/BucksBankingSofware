@@ -6,12 +6,12 @@ import jakarta.persistence.*;
 
 public class Beneficiary {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long ssn;
     private String name;
 
     // Constructor
-    public Beneficiary(long ssn, String name) {
-        this.ssn = ssn;
+    public Beneficiary(String name) {
         this.name = name;
     }
 

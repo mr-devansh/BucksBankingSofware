@@ -2,8 +2,14 @@ package com.bucks.banking.model;
 
 import java.util.Date;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="transaction_tb")
 public class TransactionDetail {
     // Attributes
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long transactionId;
     private long accountNumber;
     private Date transactionDate;
@@ -11,8 +17,7 @@ public class TransactionDetail {
     private TransactionType txType;
 
     // Constructor
-    public TransactionDetail(long transactionId, long accountNumber, Date transactionDate, int amount, TransactionType txType) {
-        this.transactionId = transactionId;
+    public TransactionDetail(long accountNumber, Date transactionDate, int amount, TransactionType txType) {
         this.accountNumber = accountNumber;
         this.transactionDate = transactionDate;
         this.amount = amount;

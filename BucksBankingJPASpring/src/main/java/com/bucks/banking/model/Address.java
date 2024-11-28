@@ -2,9 +2,11 @@ package com.bucks.banking.model;
 
 import jakarta.persistence.*;
 @Entity
+@Table(name="address_tb")
 public class Address {
     // Attributes
 	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String city;
     private String country;

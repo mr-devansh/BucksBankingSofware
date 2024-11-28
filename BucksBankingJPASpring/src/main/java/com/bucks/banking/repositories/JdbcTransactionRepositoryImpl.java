@@ -17,16 +17,19 @@ public class JdbcTransactionRepositoryImpl implements TransactionRepository {
 		this.dataSource = dataSource;
 	}
 
-	public Long addTransaction(TransactionDetail transactionDetail, Connection connection) {
+	public Long addTransaction(TransactionDetail transactionDetail) {
 	    // SQL Query for inserting a new transaction
 	    String insertQuery = "INSERT INTO transactiondetail (accountnumber, transactiondate, amount, txtype) VALUES (?, ?, ?, ?) RETURNING transactionid";
 	    PreparedStatement insertStmt = null;
 	    ResultSet resultSet = null;
 	    Long transactionId = null;
+	    Connection connect = null;
+
 
 	    try {
 	        // Use the provided connection for the transaction
-	        insertStmt = connection.prepareStatement(insertQuery);
+	    	connect = dataSource.getConnection();
+	        insertStmt = connect.prepareStatement(insertQuery);
 	        insertStmt.setLong(1, transactionDetail.getAccountNumber());
 	        insertStmt.setTimestamp(2, new Timestamp(transactionDetail.getTransactionDate().getTime()));
 	        insertStmt.setInt(3, transactionDetail.getAmount());
@@ -69,7 +72,7 @@ public class JdbcTransactionRepositoryImpl implements TransactionRepository {
                 String txTypeStr = resultSet.getString("txtype");
                 TransactionType txType = TransactionType.valueOf(txTypeStr);  // Assuming TransactionType is an enum
 
-                TransactionDetail transactionDetail = new TransactionDetail(transactionId, accountNumber, transactionDate, amount, txType);
+                TransactionDetail transactionDetail = new TransactionDetail(accountNumber, transactionDate, amount, txType);
                 transactionDetails.add(transactionDetail);
             }
 

@@ -199,7 +199,7 @@ public class Main {
 		int rewardAmount = Integer.parseInt(scanner.nextLine());
 		Account account = accountRepo.findAccountByNumber(accountNumber);
 		if(account!=null) {
-			Reward reward = new Reward(0L, rewardAmount, accountNumber);
+			Reward reward = new Reward(rewardAmount, accountNumber);
 			rewardRepo.addReward(reward);
 			System.out.println("Reward added successfully.");
 		}

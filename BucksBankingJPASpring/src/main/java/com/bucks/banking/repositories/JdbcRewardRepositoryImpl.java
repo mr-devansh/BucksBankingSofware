@@ -76,7 +76,7 @@ public class JdbcRewardRepositoryImpl implements RewardRepository{
 	        checkStmt.setLong(1, accountNumber);
 	        ResultSet resultSet = checkStmt.executeQuery();
 		    while(resultSet.next()) {
-		    	ans.add(new Reward(resultSet.getLong("rewardconfirmationnumber"), resultSet.getInt("rewardamount"), accountNumber)); // Return the sum of reward amounts
+		    	ans.add(new Reward(resultSet.getInt("rewardamount"), accountNumber)); // Return the sum of reward amounts
 		    }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

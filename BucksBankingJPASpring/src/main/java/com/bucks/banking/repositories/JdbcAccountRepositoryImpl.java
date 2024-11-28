@@ -186,7 +186,7 @@ public class JdbcAccountRepositoryImpl implements AccountRepository{
 		ResultSet ans = statement.executeQuery();
 		Set<Beneficiary> beneficiaries = new HashSet<Beneficiary>();
 		while (ans.next()) {
-			beneficiaries.add(new Beneficiary(ans.getLong("ssn"), ans.getString("name")));
+			beneficiaries.add(new Beneficiary(ans.getString("name")));
 		}
 		account.setAddress(address);
 		account.setBeneficiaries(beneficiaries);

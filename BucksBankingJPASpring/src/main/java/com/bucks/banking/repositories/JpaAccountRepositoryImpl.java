@@ -8,8 +8,15 @@ import com.bucks.banking.model.Account;
 import jakarta.persistence.*;
 
 public class JpaAccountRepositoryImpl implements AccountRepository{
-	EntityManagerFactory factory = Persistence.createEntityManagerFactory("BucksBanking");
-	EntityManager manager = factory.createEntityManager();
+	EntityManagerFactory factory;
+	EntityManager manager;
+	public JpaAccountRepositoryImpl(EntityManagerFactory factory, EntityManager manager) {
+		super();
+		this.factory = factory;
+		this.manager = manager;
+	}
+
+	
 	@Override
 	public Account findAccountByNumber(Long accountNumber) {
 		Account acc = manager.find(Account.class,accountNumber);
@@ -18,8 +25,11 @@ public class JpaAccountRepositoryImpl implements AccountRepository{
 
 	@Override
 	public List<Account> findAllAccounts() {
-		// TODO Auto-generated method stub
-		return null;
+	    // Create a JPQL query to find all Account entities
+	    TypedQuery<Account> query = manager.createQuery("SELECT a FROM Account a", Account.class);
+	    
+	    // Execute the query and return the result list
+	    return query.getResultList();
 	}
 
 	@Override
