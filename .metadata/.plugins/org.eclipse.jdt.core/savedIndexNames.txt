@@ -1,0 +1,6 @@
+INDEX VERSION 1.131+C:\Users\DEVANSSI\BucksBankingSoftware\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+3754526785.index
+3834472073.index
+3237219266.index
+1715743383.index

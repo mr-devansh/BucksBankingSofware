@@ -1,0 +1,45 @@
+package com.bucks.banking.repositories;
+
+import java.sql.Connection;
+import java.util.List;
+
+import com.bucks.banking.model.Account;
+
+import jakarta.persistence.*;
+
+public class JpaAccountRepositoryImpl implements AccountRepository{
+	EntityManagerFactory factory = Persistence.createEntityManagerFactory("BucksBanking");
+	EntityManager manager = factory.createEntityManager();
+	@Override
+	public Account findAccountByNumber(Long accountNumber) {
+		// TODO Auto-generated method stub
+		manager.getTransaction().begin();
+		Account acc = manager.find(Account.class,accountNumber);
+		return acc;
+	}
+
+	@Override
+	public List<Account> findAllAccounts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long save(Account account) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void update(Account account, Connection connection) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Account account) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

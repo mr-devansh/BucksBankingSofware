@@ -1,0 +1,9 @@
+package com.bucks.banking;
+
+import com.bucks.banking.model.Account;
+
+public class JPATest {
+	public static void main(String[] args) {
+		Account acc = new Account(0, "Devansh", "", null, null, 0, null);
+	}
+}

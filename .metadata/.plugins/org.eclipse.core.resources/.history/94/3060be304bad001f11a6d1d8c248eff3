@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+    xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+ 
+    <!-- bean definitions here -->
+<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+<property name="url" value="jdbc:postgresql://localhost:5432/BucksBanking"/>
+<property name="driverClassName" value="org.postgresql.Driver"/>
+<property name="username" value="postgres"/>
+<property name="password" value="root"/>
+</bean>
+<bean id="accountRepo" class="com.bucks.banking.repositories.JdbcAccountRepositoryImpl">
+<constructor-arg  ref="dataSource"/>
+</bean>
+<bean id="transactionRepo" class="com.bucks.banking.repositories.JdbcTransactionRepositoryImpl">
+<constructor-arg ref="dataSource"/>
+</bean>
+<bean id="rewardRepo" class="com.bucks.banking.repositories.JdbcRewardRepositoryImpl">
+<constructor-arg  ref="dataSource"/>
+</bean>
+<bean id="emailService" class="com.bucks.banking.services.EmailService"/>
+<bean id="bankingService" class="com.bucks.banking.services.BankServiceImpl">
+<constructor-arg ref="accountRepo"/>
+<constructor-arg  ref="transactionRepo"/>
+<constructor-arg  ref="rewardRepo"/>
+<constructor-arg ref="emailService"/>
+<constructor-arg ref="dataSource"/>
+</bean>
+
+ 
+</beans>
+ 

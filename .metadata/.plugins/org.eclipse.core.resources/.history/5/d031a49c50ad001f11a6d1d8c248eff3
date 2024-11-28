@@ -1,0 +1,69 @@
+package com.bucks.banking;
+
+import com.bucks.banking.model.Account;
+import com.bucks.banking.model.Address;
+import com.bucks.banking.model.Beneficiary;
+import com.bucks.banking.repositories.JpaAccountRepositoryImpl;
+
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class JpaAccountRepositoryImplTest {
+
+    public static void main(String[] args) {
+        // Set up the EntityManagerFactory and EntityManager
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("BucksBanking");
+        EntityManager manager = factory.createEntityManager();
+        
+        // Create repository instance
+        JpaAccountRepositoryImpl accountRepository = new JpaAccountRepositoryImpl();
+
+        // Create some dummy data
+        Address address = new Address("City", "Country");
+        Set<Beneficiary> beneficiaries = new HashSet<>();
+
+        // Create Account 1
+        Account account1 = new Account(123L, "John Doe", true, beneficiaries, address, 5000, "john.doe@example.com");
+        
+        // Create Account 2
+        Account account2 = new Account(456L, "Jane Smith", true, beneficiaries, address, 7000, "jane.smith@example.com");
+
+        // 1. Save Account 1
+        accountRepository.save(account1);
+        accountRepository.save(account2);
+        System.out.println("Accounts saved successfully.");
+
+        // 2. Find Account by number (should return account1)
+        Account foundAccount = accountRepository.findAccountByNumber(123L);
+        System.out.println("Account found by number 123: " + foundAccount);
+
+        // 3. Find all accounts (should return both account1 and account2)
+        List<Account> allAccounts = accountRepository.findAllAccounts();
+        System.out.println("All accounts: " + allAccounts);
+
+        // 4. Update Account 1's name and balance
+        account1.setName("John Updated");
+        account1.setBalance(6000);
+        accountRepository.update(account1, null); // Passing null for connection, it's not used in the update method
+        System.out.println("Account after update: " + accountRepository.findAccountByNumber(123L));
+
+        // 5. Delete Account 2
+        accountRepository.delete(account2);
+        System.out.println("Account 2 deleted.");
+
+        // Verify deletion by trying to find Account 2
+        Account deletedAccount = accountRepository.findAccountByNumber(456L);
+        System.out.println("Account found by number 456 (should be null): " + deletedAccount);
+
+        // Clean up resources
+        if (manager.isOpen()) {
+            manager.close();
+        }
+        if (factory.isOpen()) {
+            factory.close();
+        }
+    }
+}

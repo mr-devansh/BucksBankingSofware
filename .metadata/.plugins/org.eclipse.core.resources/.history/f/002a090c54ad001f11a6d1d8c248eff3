@@ -1,0 +1,27 @@
+package com.bucks.banking;
+
+import java.util.Scanner;
+
+import com.bucks.banking.repositories.AccountRepository;
+import com.bucks.banking.repositories.RewardRepository;
+import com.bucks.banking.repositories.TransactionRepository;
+import com.bucks.banking.services.BankService;
+import com.bucks.banking.services.EmailService;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		private static BankService bankService;
+		private static RewardRepository rewardRepo;
+		private static TransactionRepository transactionRepo;
+		private static EmailService emailService;
+		private static Scanner scanner;
+		private static AccountRepository accountRepo;
+		
+
+
+	}
+
+}

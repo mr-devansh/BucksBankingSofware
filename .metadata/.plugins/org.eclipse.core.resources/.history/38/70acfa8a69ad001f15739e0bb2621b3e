@@ -1,0 +1,12 @@
+package com.bucks.banking;
+
+import java.util.*;
+
+import com.bucks.banking.model.Account;
+
+public class JPATest {
+	public static void main(String[] args) {
+		HashSet<> bene = new HashSet<>();
+		Account acc = new Account(0, "Devansh", true, , null, 0, null);
+	}
+}

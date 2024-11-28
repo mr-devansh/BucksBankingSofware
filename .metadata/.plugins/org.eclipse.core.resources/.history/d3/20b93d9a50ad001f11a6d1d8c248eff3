@@ -1,0 +1,56 @@
+package com.bucks.banking.repositories;
+
+import java.sql.Connection;
+import java.util.List;
+
+import com.bucks.banking.model.Account;
+
+import jakarta.persistence.*;
+
+public class JpaAccountRepositoryImpl implements AccountRepository{
+
+	EntityManagerFactory factory = Persistence.createEntityManagerFactory("BucksBanking");
+	EntityManager manager = factory.createEntityManager();
+	
+	@Override
+	public Account findAccountByNumber(Long accountNumber) {
+		Account account = manager.find(Account.class, accountNumber);
+		return account;
+	}
+
+	@Override
+	public List<Account> findAllAccounts() {
+		String queryStr = "SELECT a FROM Account a";
+	    TypedQuery<Account> query = manager.createQuery(queryStr, Account.class);
+	    return query.getResultList();
+	}
+
+	@Override
+	public long save(Account account) {
+		// TODO Auto-generated method stub
+		manager.getTransaction().begin();
+		manager.persist(account);
+		manager.getTransaction().commit();
+		return 1;
+	}
+
+	@Override
+	public void update(Account account, Connection connection) {
+		// TODO Auto-generated method stub
+		Account accountFound = manager.find(Account.class, account.getAccountNumber());
+		accountFound = account;
+		manager.getTransaction().begin();
+		manager.persist(accountFound);
+		manager.getTransaction().commit();
+	}
+
+	@Override
+	public void delete(Account account) {
+		// TODO Auto-generated method stub
+		Account foundAccount = manager.find(Account.class, account.getAccountNumber());
+		manager.getTransaction().begin();
+		manager.remove(foundAccount);
+		manager.getTransaction().commit();
+	}
+
+}
