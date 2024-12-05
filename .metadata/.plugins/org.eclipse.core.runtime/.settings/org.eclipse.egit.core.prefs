@@ -1,3 +1,4 @@
-GitRepositoriesView.GitDirectories=C\:\\Users\\DEVANSSI\\BucksBankingSoftware\\BucksBankingJPASpring\\.git;C\:\\Users\\DEVANSSI\\BucksBankingSoftware\\BucksBanking3\\.git;C\:\\Users\\DEVANSSI\\BucksBankingSoftware\\BucksBanking2\\.git;
-GitRepositoriesView.GitDirectories.relative=BucksBankingJPASpring\\.git;BucksBanking3\\.git;BucksBanking2\\.git;
+GitRepositoriesView.GitDirectories=C\:\\Users\\DEVANSSI\\BucksBankingSoftware\\BucksBankingJPASpring\\.git;C\:\\Users\\DEVANSSI\\BucksBankingSoftware\\BucksBanking3\\.git;C\:\\Users\\DEVANSSI\\BucksBankingSoftware\\.git;C\:\\Users\\DEVANSSI\\BucksBankingSoftware\\BucksBanking2\\.git;
+GitRepositoriesView.GitDirectories.relative=BucksBankingJPASpring\\.git;BucksBanking3\\.git;.git;BucksBanking2\\.git;
+core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1

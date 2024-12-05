@@ -1,5 +1,0 @@
-package com.bucks.banking.services;
-
-public class BankServiceJpaImpl implements BankService{
-	
-}

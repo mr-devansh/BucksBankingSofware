@@ -6,6 +6,7 @@ import java.util.List;
 import com.bucks.banking.model.Account;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 
 public class JpaAccountRepositoryImpl implements AccountRepository{
 	EntityManagerFactory factory;
@@ -34,23 +35,29 @@ public class JpaAccountRepositoryImpl implements AccountRepository{
 
 	@Override
 	public void save(Account account) {
-		manager.getTransaction().begin();
-		manager.persist(account.getAddress());
-		account.getBeneficiaries().forEach(e->manager.persist(e));
-		manager.persist(account);//inserts because object of type java employee
-		manager.getTransaction().commit();
+		try {
+            manager.persist(account.getAddress());
+            account.getBeneficiaries().forEach(manager::persist);
+            manager.persist(account);
+
+        } catch (Exception e) {
+            // Handling exceptions if needed
+            throw new RuntimeException("Error saving account", e);
+        }
 	}
 
 	@Override
+
 	public void update(Account account) {
-		// TODO Auto-generated method stub
 		Account found = manager.find(Account.class, account.getAccountNumber());
-		if(found!=null) {
-			found = account;
-			manager.getTransaction().begin();
-			manager.persist(found);//inserts because object of type java employee
-			manager.getTransaction().commit();
-		}
+        if (found != null) {
+
+            manager.merge(account); // Update the account
+
+        } else {
+
+            throw new RuntimeException("Account not found for update.");
+        }
 	}
 
 	@Override
@@ -58,9 +65,7 @@ public class JpaAccountRepositoryImpl implements AccountRepository{
 		// TODO Auto-generated method stub
 		Account acc = manager.find(Account.class, account.getAccountNumber());
 		if(acc!=null) {
-			manager.getTransaction().begin();
 			manager.remove(acc);
-			manager.getTransaction().commit();
 		}
 	}
 }

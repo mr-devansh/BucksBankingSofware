@@ -12,9 +12,7 @@ import com.bucks.banking.services.BankService;
 import com.bucks.banking.services.BankServiceJpaImpl;
 import com.bucks.banking.services.EmailService;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
 
 @Configuration
 public class BankAppConfiguration {
@@ -22,7 +20,7 @@ public class BankAppConfiguration {
 	EntityManagerFactory factory = Persistence.createEntityManagerFactory("BucksBanking");
 	EntityManager manager = factory.createEntityManager();
 
-	
+	//make factory manager bean
 	@Bean
 	public BasicDataSource createDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
@@ -42,9 +40,5 @@ public class BankAppConfiguration {
 	@Bean
 	public TransactionRepository createTransactionRepositry() {
 		return new JpaTransactionRepositoryImpl(factory, manager);
-	}
-	@Bean
-	public BankService createBankService() {
-		return new BankServiceJpaImpl();
 	}
 }
